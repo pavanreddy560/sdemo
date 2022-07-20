@@ -32,7 +32,7 @@ pipeline{
  	
  	stage('Publish to JFrog'){
  		steps{
- 			sh 'jf rt u --url http://192.168.56.102:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} SpringBootHelloWorld-*.jar Spring-Boot-Project'
+ 			sh 'jf rt u --url http://192.168.56.102:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} target/SpringBootHelloWorld-*.jar Spring-Boot-Project'
  		}	
  	}
     }
