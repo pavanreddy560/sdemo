@@ -9,7 +9,7 @@ pipeline{
         stage('Compile & Unit Test'){
             steps{
                 git url: "https://github.com/BharadwajAyinapurapu/Spring-Boot-Hello-World.git"
-                sh 'mvn test'
+                sh 'mvn clean test'
             }
             post{
                 always{
@@ -29,6 +29,14 @@ pipeline{
                 }
             }
         }
+ 	
+ 	stage('Code Quality Check'){
+		steps{
+			withSonarQubeEnv('sonarqube-7.1'){
+		            sh 'mvn sonar:sonar'
+		        }
+		}
+	}
  	
  	stage('Publish to JFrog'){
  		steps{
